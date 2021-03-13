@@ -1,16 +1,21 @@
 /* eslint-disable node/no-path-concat */
 /* eslint-disable camelcase */
 const express = require('express')
-const request = require('request') // "Request" library
-const cors = require('cors')
-const querystring = require('query-string')
 const app = express()
-app.use(express.static(__dirname + '/public'))
-  .use(cors())
+const port = 3000
 
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
+const request = require('request') // "Request" library
+const querystring = require('query-string')
 const client_id = process.env.CLIENT_ID
 const client_secret = process.env.CLIENT_TOKEN
-const redirect_uri = 'http://localhost:8080/callback/'
+const redirect_uri = 'http://localhost:3000/callback/'
 const server_address = 'http://localhost:8080' // by default it should be http://localhost:8080 or 8081 by default
 const frontend_server_port = '8081' // your Vue server port (8080 or 8081 by default)
 const scope = 'user-read-email'

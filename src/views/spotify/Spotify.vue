@@ -1,16 +1,16 @@
 <template>
   <div class="spotify">
-    <Sidebar />
+    <spotify-dashboard />
   </div>
 </template>
 
 <script>
-import Sidebar from '@/components/spotify/Sidebar'
+import SpotifyDashboard from '@/components/spotify/dashboard/Dashboard'
 
 export default {
   name: 'Spotify',
   components: {
-    Sidebar
+    SpotifyDashboard
   }
 }
 </script>

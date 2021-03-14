@@ -13,12 +13,16 @@ const routes = [
   {
     path: '/spotify',
     name: 'Spotify',
-    component: () => import(/* webpackChunkName: "imprint" */ '../views/Spotify.vue'),
+    component: () => import('@/views/spotify/Spotify.vue'),
     meta: {
       title: 'Konto'
     }
+  },
+  {
+    path: '/spotify/playlist/:id',
+    name: 'SpotifyPlaylistDetailVue',
+    component: () => import('@/views/spotify/PlaylistDetail.vue')
   }
-
 ]
 
 const router = new VueRouter({

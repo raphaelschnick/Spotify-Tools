@@ -18,23 +18,21 @@
       </p>
     </template>
     <template v-if="!user">
-      <h1>Log in to Spotify using Authorization Code flow</h1>
-      <a
-        href="http://localhost:3000/login"
-        class="btn btn-primary"
-      >Log in with Spotify</a><br>
+      <SpotifyLogin />
     </template>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import SpotifyLogin from '@/components/spotify/Login'
 import SpotifySidebar from '@/components/spotify/Sidebar'
 
 export default {
   name: 'Spotify',
   components: {
-    SpotifySidebar
+    SpotifySidebar,
+    SpotifyLogin
   },
   data () {
     return {
@@ -54,11 +52,6 @@ export default {
         }
       }).then((response) => {
         this.$store.commit('mutateUser', response.data)
-
-        // eslint-disable-next-line no-console
-        console.log('Response from server: ')
-        // eslint-disable-next-line no-console
-        console.log(this.$store.state.user)
       })
     }
   },

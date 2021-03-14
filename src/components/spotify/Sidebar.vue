@@ -1,11 +1,6 @@
 <template>
   <div>
-    <b-sidebar
-      id="sidebar-no-header"
-      aria-labelledby="sidebar-no-header-title"
-      no-header
-      shadow
-    >
+    <b-sidebar>
       <div class="p-3">
         <nav class="mb-3">
           <b-nav vertical>

@@ -4,22 +4,16 @@ const express = require('express')
 const request = require('request') // "Request" library
 const querystring = require('query-string')
 const app = express()
-const port = 3000
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.listen(port, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Example app listening at http://localhost:${port}`)
-})
-
 const client_id = process.env.SPOTIFY_ID
 const client_secret = process.env.SPOTIFY_TOKEN
 const redirect_uri = 'http://localhost:3000/callback'
-const server_address = 'http://192.168.178.25:8080/spotify?' // by default it should be http://localhost:8080 or 8081 by default
-const frontend_server_port = '8080' // your Vue server port (8080 or 8081 by default)
+const server_address = 'http://localhost:8080/spotify?' // by default it should be http://localhost:8080 or 8081 by default
+const frontend_server_port = '3000' // your Vue server port (8080 or 8081 by default)
 const scope = 'user-read-email'
 
 app.get('/login', function (req, res) {

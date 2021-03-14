@@ -1,18 +1,11 @@
 <template>
   <div class="home">
-    <b-container>
-      <spotify-auth />
-    </b-container>
+    <b-container />
   </div>
 </template>
 
 <script>
-import SpotifyAuth from '@/components/spotify/Auth.vue'
-
 export default {
-  name: 'Home',
-  components: {
-    SpotifyAuth
-  }
+  name: 'Home'
 }
 </script>

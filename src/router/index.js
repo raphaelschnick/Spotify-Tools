@@ -1,22 +1,21 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Router from 'vue-router'
 import Home from '../views/Home.vue'
+import Spotify from '../views/Spotify.vue'
+Vue.use(Router)
 
-Vue.use(VueRouter)
-
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home,
-    meta: {
-      title: 'Login'
+export default new Router({
+  mode: 'history',
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/spotify',
+      name: 'Spotify',
+      component: Spotify
     }
-  }
-]
-
-const router = new VueRouter({
-  routes
+  ]
 })
-
-export default router

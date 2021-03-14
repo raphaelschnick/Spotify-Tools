@@ -1,13 +1,9 @@
 <template>
-  <div class="hello">
+  <div class="spotify">
+    <spotify-sidebar />
     <template v-if="user">
       <h1>Hi there, {{ user.display_name }}</h1>
-      <img
-        :src="user.images[0].url"
-        alt="profile_picture"
-        class="profile_pic"
-      >
-      <p>Email address: {{ user.email }}</p>
+      <p>Email address: <a> {{ user.email }} </a></p>
       <p>
         <a :href="user.external_urls.spotify">Link to your profile</a>
       </p>
@@ -21,10 +17,10 @@
         </button>
       </p>
     </template>
-    <template v-else>
+    <template v-if="!user">
       <h1>Log in to Spotify using Authorization Code flow</h1>
       <a
-        href="http://localhost:3000/login/"
+        href="http://localhost:3000/login"
         class="btn btn-primary"
       >Log in with Spotify</a><br>
     </template>
@@ -33,9 +29,13 @@
 
 <script>
 import Vue from 'vue'
+import SpotifySidebar from '@/components/spotify/Sidebar'
 
 export default {
-  name: 'SpotifyAuth',
+  name: 'Spotify',
+  components: {
+    SpotifySidebar
+  },
   data () {
     return {
       email: ''

@@ -1,6 +1,8 @@
-/* eslint-disable node/no-path-concat */
+/* eslint-disable new-cap */
 /* eslint-disable camelcase */
 const express = require('express')
+const request = require('request') // "Request" library
+const querystring = require('query-string')
 const app = express()
 const port = 3000
 
@@ -9,15 +11,15 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
+  // eslint-disable-next-line no-console
   console.log(`Example app listening at http://localhost:${port}`)
 })
-const request = require('request') // "Request" library
-const querystring = require('query-string')
-const client_id = process.env.CLIENT_ID
-const client_secret = process.env.CLIENT_TOKEN
-const redirect_uri = 'http://localhost:3000/callback/'
-const server_address = 'http://localhost:8080' // by default it should be http://localhost:8080 or 8081 by default
-const frontend_server_port = '8081' // your Vue server port (8080 or 8081 by default)
+
+const client_id = process.env.SPOTIFY_ID
+const client_secret = process.env.SPOTIFY_TOKEN
+const redirect_uri = 'http://localhost:3000/callback'
+const server_address = 'http://192.168.178.25:8080/spotify?' // by default it should be http://localhost:8080 or 8081 by default
+const frontend_server_port = '8080' // your Vue server port (8080 or 8081 by default)
 const scope = 'user-read-email'
 
 app.get('/login', function (req, res) {
@@ -44,7 +46,6 @@ app.get('/callback', function (req, res) { // change '/callback' if your redirec
       grant_type: 'authorization_code'
     },
     headers: {
-      // eslint-disable-next-line new-cap
       Authorization: 'Basic ' + (new Buffer.from(client_id + ':' + client_secret).toString('base64'))
     },
     json: true

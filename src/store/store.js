@@ -1,4 +1,5 @@
-import Home from '@/views/Home'
+import Home from '../views/Home'
+import Spotify from '../views/Spotify'
 import Vuex from 'vuex'
 import Vue from 'vue'
 
@@ -19,6 +20,7 @@ export default new Vuex.Store({
     }
   },
   modules: {
-    Home
+    Home,
+    Spotify
   }
 })

@@ -1,82 +1,79 @@
 <template>
-  <div class="home">
-    <div
-      v-if="user"
-      class="container-fluid display-table"
-    >
-      <div class="row display-table-row">
-        <div
-          id="navigation"
-          class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box"
-        >
-          <div class="logo">
-            <router-link
-              style="font-size: 4rem;"
-              :to="{ name: 'Home' }"
-              class="fab fa-spotify"
-            />
-          </div>
-          <div class="navi">
-            <ul>
-              <li :class="{ 'active': active === 1 }">
-                <a @click="active = 1"><i
-                  class="fa fa-home"
-                  aria-hidden="true"
-                /><span class="hidden-xs hidden-sm">Home</span></a>
-              </li>
-              <li :class="{ 'active': active === 2 }">
-                <a @click="active = 2"><i
-                  class="far fa-plus-square"
-                  aria-hidden="true"
-                /><span class="hidden-xs hidden-sm">Playlist erstellen</span></a>
-              </li>
-              <li :class="{ 'active': active === 3 }">
-                <a @click="active = 3"><i
-                  class="fas fa-random"
-                  aria-hidden="true"
-                /><span class="hidden-xs hidden-sm">Random Playlist</span></a>
-              </li>
-              <li :class="{ 'active': active === 4 }">
-                <a @click="active = 4"><i
-                  class="fab fa-youtube"
-                  aria-hidden="true"
-                /><span class="hidden-xs hidden-sm">YouTube Playlist Sync</span></a>
-              </li>
-              <li :class="{ 'active': active === 5 }">
-                <a @click="active = 5"><i
-                  class="fas fa-cogs"
-                  aria-hidden="true"
-                /><span class="hidden-xs hidden-sm">Einstellungen</span></a>
-              </li>
-            </ul>
-          </div>
+  <div
+    v-if="user"
+    class="container-fluid display-table"
+  >
+    <div class="row display-table-row">
+      <div
+        id="navigation"
+        class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box"
+      >
+        <div class="logo">
+          <router-link
+            style="font-size: 4rem;"
+            :to="{ name: 'Home' }"
+            class="fab fa-spotify"
+          />
         </div>
-        <div class="col-md-10 col-sm-11 display-table-cell v-align">
-          <user
-            v-if="active === 1"
-            :user="user"
-            :playlists="playlists"
-          />
-          <playlist-create
-            v-if="active === 2"
-            :user="user"
-          />
-          <playlist-random
-            v-if="active === 3"
-            :user="user"
-          />
-          <playlist-sync
-            v-if="active === 4"
-            :user="user"
-          />
-          <spotify-settings
-            v-if="active === 5"
-            :user="user"
-          />
+        <div class="navi">
+          <ul>
+            <li :class="{ 'active': active === 1 }">
+              <a @click="active = 1"><i
+                class="fa fa-home"
+                aria-hidden="true"
+              /><span class="hidden-xs hidden-sm">Home</span></a>
+            </li>
+            <li :class="{ 'active': active === 2 }">
+              <a @click="active = 2"><i
+                class="far fa-plus-square"
+                aria-hidden="true"
+              /><span class="hidden-xs hidden-sm">Playlist erstellen</span></a>
+            </li>
+            <li :class="{ 'active': active === 3 }">
+              <a @click="active = 3"><i
+                class="fas fa-random"
+                aria-hidden="true"
+              /><span class="hidden-xs hidden-sm">Random Playlist</span></a>
+            </li>
+            <li :class="{ 'active': active === 4 }">
+              <a @click="active = 4"><i
+                class="fab fa-youtube"
+                aria-hidden="true"
+              /><span class="hidden-xs hidden-sm">YouTube Playlist Sync</span></a>
+            </li>
+            <li :class="{ 'active': active === 5 }">
+              <a @click="active = 5"><i
+                class="fas fa-cogs"
+                aria-hidden="true"
+              /><span class="hidden-xs hidden-sm">Einstellungen</span></a>
+            </li>
+          </ul>
         </div>
       </div>
+      <div class="col-md-10 col-sm-11 display-table-cell v-align">
+        <user
+          v-if="active === 1"
+          :user="user"
+          :playlists="playlists"
+        />
+        <playlist-create
+          v-if="active === 2"
+          :user="user"
+        />
+        <playlist-random
+          v-if="active === 3"
+          :user="user"
+        />
+        <playlist-sync
+          v-if="active === 4"
+          :user="user"
+        />
+        <spotify-settings
+          v-if="active === 5"
+          :user="user"
+        />
+      </div>
     </div>
-    <SpotifyLogin v-if="!user" />
   </div>
 </template>
 
@@ -87,11 +84,10 @@ import PlaylistCreate from '@/components/spotify/dashboard/PlaylistCreate.vue'
 import PlaylistSync from '@/components/spotify/dashboard/PlaylistSync.vue'
 import PlaylistRandom from '@/components/spotify/dashboard/PlaylistRandom.vue'
 import SpotifySettings from '@/components/spotify/dashboard/Settings'
-import SpotifyLogin from '@/components/spotify/Login'
 
 export default {
   name: 'SpotifyDashboard',
-  components: { User, PlaylistCreate, PlaylistSync, PlaylistRandom, SpotifySettings, SpotifyLogin },
+  components: { User, PlaylistCreate, PlaylistSync, PlaylistRandom, SpotifySettings },
   data () {
     return {
       active: 1,
@@ -104,27 +100,17 @@ export default {
     }
   },
   created () {
-    if (this.$route.query) {
-      Vue.axios.get('https://api.spotify.com/v1/me', {
-        headers: {
-          Authorization: 'Bearer ' + this.$route.query.access_token
+    Vue.axios.get('https://api.spotify.com/v1/me/playlists', {
+      headers: {
+        Authorization: 'Bearer ' + this.$store.getters.getToken
+      }
+    }).then((response) => {
+      response.data.items.forEach((item) => {
+        if (item.owner.id === this.user.id) {
+          this.playlists.push(item)
         }
-      }).then((response) => {
-        this.$store.commit('mutateUser', response.data)
-        this.$store.commit('mutateToken', this.$route.query.access_token)
-        Vue.axios.get('https://api.spotify.com/v1/me/playlists', {
-          headers: {
-            Authorization: 'Bearer ' + this.$route.query.access_token
-          }
-        }).then((response) => {
-          response.data.items.forEach((item) => {
-            if (item.owner.id === this.user.id) {
-              this.playlists.push(item)
-            }
-          })
-        })
       })
-    }
+    })
   }
 }
 </script>

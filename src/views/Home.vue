@@ -9,6 +9,11 @@ import SpotifyLogin from '@/components/spotify/Login'
 
 export default {
   name: 'Home',
-  components: { SpotifyLogin }
+  components: { SpotifyLogin },
+  created () {
+    if (this.$store.getters.getToken) {
+      this.$router.push('spotify/dashboard')
+    }
+  }
 }
 </script>

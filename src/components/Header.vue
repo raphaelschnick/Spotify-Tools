@@ -15,8 +15,17 @@
       is-nav
     >
       <b-navbar-nav>
-        <b-nav-item href="/">
-          Link
+        <b-nav-item
+          v-if="!this.$store.getters.getToken"
+          :to="{ name: 'SpotifyLogin' }"
+        >
+          Login
+        </b-nav-item>
+        <b-nav-item
+          v-if="this.$store.getters.getToken"
+          @click="logOut()"
+        >
+          Log out
         </b-nav-item>
       </b-navbar-nav>
 
@@ -58,6 +67,7 @@ export default {
   name: 'Header',
   methods: {
     logOut () {
+      this.$store.commit('mutateToken', null)
       this.$store.commit('mutateUser', null)
       this.$router.push({ name: 'Home' })
     }

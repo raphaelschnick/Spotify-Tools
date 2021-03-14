@@ -1,16 +1,21 @@
 <template>
   <div v-if="playlist">
-    <spotify-playlist-detail :playlist="playlist" />
+    <spotify-playlist-detail
+      v-if="this.$store.getters.getToken"
+      :playlist="playlist"
+    />
+    <SpotifyLogin v-if="!this.$store.getters.getToken" />
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
+import SpotifyLogin from '@/components/spotify/Login'
 import SpotifyPlaylistDetail from '@/components/spotify/playlist/Detail'
 
 export default {
   name: 'SpotifyPlaylistDetailVue',
-  components: { SpotifyPlaylistDetail },
+  components: { SpotifyPlaylistDetail, SpotifyLogin },
   data () {
     return {
       playlist: null

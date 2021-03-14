@@ -15,7 +15,7 @@
       Tracks: {{ playlist.tracks.total }}
     </b-card-text>
     <b-button
-      :to="{ name: 'SpotifyPlaylistDetailVue', params: { id: playlist.id } }"
+      :to="{ name: 'SpotifyPlaylistDetail', params: { id: playlist.id } }"
       variant="primary"
     >
       Zur Playlist

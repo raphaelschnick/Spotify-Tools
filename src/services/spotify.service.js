@@ -1,12 +1,21 @@
-import httpClient from './httpClient'
+import spotifyClient from './spotifyClient'
 import { app } from '@/main'
 
-const END_POINT = '/spotify'
+const END_POINT = '/me'
 
 const spotifyService = {
-  async getList () {
+  async get () {
     try {
-      const RAW_DATA = await httpClient.get(`${END_POINT}`)
+      const RAW_DATA = await spotifyClient.get(`${END_POINT}` + '/')
+      return RAW_DATA.data
+    } catch (e) {
+      this.errorHandling(e)
+      return null
+    }
+  },
+  async addPlaylist (playlist) {
+    try {
+      const RAW_DATA = await spotifyClient.post(`${END_POINT}` + '/playlists', playlist)
       return RAW_DATA.data
     } catch (e) {
       this.errorHandling(e)

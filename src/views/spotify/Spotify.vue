@@ -1,16 +1,19 @@
 <template>
   <div class="spotify">
-    <spotify-dashboard />
+    <spotify-dashboard v-if="this.$store.getters.getToken" />
+    <SpotifyLogin v-if="!this.$store.getters.getToken" />
   </div>
 </template>
 
 <script>
+import SpotifyLogin from '@/components/spotify/Login'
 import SpotifyDashboard from '@/components/spotify/dashboard/Dashboard'
 
 export default {
   name: 'Spotify',
   components: {
-    SpotifyDashboard
+    SpotifyDashboard,
+    SpotifyLogin
   }
 }
 </script>

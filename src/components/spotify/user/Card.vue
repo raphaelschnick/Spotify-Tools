@@ -12,8 +12,9 @@
       <h2>
         {{ user.display_name }}
       </h2>
-      <a> {{ user.email }} </a>
+      <p> {{ user.email }} </p>
       <p>Follower: {{ user.followers.total }}</p>
+      <p>Following: {{ following.length }}</p>
 
       <b-button
         :href="user.external_urls.spotify"
@@ -27,6 +28,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'SpotifyUserCard',
   props: {
@@ -35,10 +38,26 @@ export default {
       required: true
     }
   },
+  data () {
+    return {
+      following: []
+    }
+  },
   computed: {
     image () {
       return this.user.images[0] ? this.user.images[0].url : 'https://image.flaticon.com/icons/png/512/17/17004.png'
     }
+  },
+  created () {
+    axios.get('https://api.spotify.com/v1/me/following?type=artist', {
+      headers: {
+        Authorization: 'Bearer ' + this.$store.getters.getToken
+      }
+    }).then(response => {
+      if (response) {
+        this.following = response.data.artists.items
+      }
+    })
   }
 }
 </script>

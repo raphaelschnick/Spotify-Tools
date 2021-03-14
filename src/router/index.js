@@ -11,7 +11,12 @@ const routes = [
     component: Home
   },
   {
-    path: '/spotify',
+    path: '/spotify/login',
+    name: 'SpotifyLogin',
+    component: () => import('@/views/spotify/Login')
+  },
+  {
+    path: '/spotify/dashboard',
     name: 'Spotify',
     component: () => import('@/views/spotify/Spotify.vue'),
     meta: {
@@ -20,12 +25,18 @@ const routes = [
   },
   {
     path: '/spotify/playlist/:id',
-    name: 'SpotifyPlaylistDetailVue',
+    name: 'SpotifyPlaylistDetail',
     component: () => import('@/views/spotify/PlaylistDetail.vue')
+  },
+  {
+    path: '*',
+    name: 'Error',
+    component: () => import('@/views/spotify/Login')
   }
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 

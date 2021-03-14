@@ -45,6 +45,7 @@ export default {
   },
   methods: {
     logOut () {
+      this.$store.commit('mutateToken', null)
       this.$store.commit('mutateUser', null)
       this.$router.push({ name: 'Home' })
     }

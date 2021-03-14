@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <b-container>
-      <SpotifyLogin />
-    </b-container>
+    <SpotifyLogin />
   </div>
 </template>
 

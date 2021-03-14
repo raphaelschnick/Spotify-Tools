@@ -12,8 +12,8 @@ app.get('/', (req, res) => {
 const client_id = process.env.SPOTIFY_ID
 const client_secret = process.env.SPOTIFY_TOKEN
 const redirect_uri = 'http://localhost:3000/callback'
-const server_address = 'http://localhost:8080/spotify?' // by default it should be http://localhost:8080 or 8081 by default
-const frontend_server_port = '3000' // your Vue server port (8080 or 8081 by default)
+const server_address = 'http://localhost:8080/#/spotify?'
+const frontend_server_port = '3000'
 const scope = 'user-read-email'
 
 app.get('/login', function (req, res) {

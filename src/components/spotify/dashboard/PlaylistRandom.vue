@@ -171,7 +171,7 @@ export default {
                   this.value = 40
                   let i
                   const uris = []
-                  for (i = 0; i < 20; i++) {
+                  for (i = 0; i < this.response.tracks.total; i++) {
                     const random = this.generateUniqueRandom(99)
                     const track = responseTracks.data.items[random]
                     uris.push(track.track.uri)

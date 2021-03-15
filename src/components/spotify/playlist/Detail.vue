@@ -25,61 +25,17 @@
         </b-button>
       </b-col>
     </b-row>
-    <table
-      v-if="tracks"
-      class="table mt-5"
-    >
-      <thead>
-        <tr>
-          <th scope="col" />
-          <th scope="col">
-            Titel
-          </th>
-          <th scope="col">
-            Künstler*in
-          </th>
-          <th
-            scope="col"
-            class="brief"
-          >
-            Album
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          v-for="track in tracks"
-          :key="track.id"
-        >
-          <td>
-            <b-img
-              :src="track.album.images[0].url"
-              fluid
-              width="100"
-            />
-          </td>
-          <td>
-            {{ track.name }}
-          </td>
-          <td>
-            {{ track.artists[0].name }}
-          </td>
-          <td class="brief">
-            <p>
-              {{ track.album.name }}
-            </p>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <spotify-song-table :tracks="tracks" />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import SpotifySongTable from '@/components/spotify/song/Table'
 
 export default {
   nane: 'SpotifyPlaylistDetail',
+  components: { SpotifySongTable },
   props: {
     playlist: {
       type: Object,
@@ -120,7 +76,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

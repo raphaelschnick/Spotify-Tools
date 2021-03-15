@@ -1,7 +1,7 @@
 <template>
-  <div v-if="playlist">
+  <div>
     <spotify-playlist-detail
-      v-if="this.$store.getters.getToken"
+      v-if="this.$store.getters.getToken && playlist"
       :playlist="playlist"
     />
     <SpotifyLogin v-if="!this.$store.getters.getToken" />

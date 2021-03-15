@@ -10,7 +10,7 @@
         v-model="playlist.name"
         required
         placeholder="Name"
-        type="Text"
+        type="text"
         :state="Boolean(playlist.name)"
       />
     </b-form-group>
@@ -23,7 +23,7 @@
         maxlength="300"
         rows="3"
         placeholder="Beschreibung"
-        type="Text"
+        type="text"
         @keyup="textCounter('description', 'counter', 300)"
       />
       <input
@@ -45,7 +45,7 @@
       type="submit"
       variant="primary"
     >
-      Submit
+      Playlist erstellen
     </b-button>
   </b-form>
 </template>

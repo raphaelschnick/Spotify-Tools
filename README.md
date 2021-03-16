@@ -118,7 +118,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 Raphael Schnick - raphaelschnick@gmail.com
 
-[Project Link:](https://github.com/raphaelschnick/Spotify-Tools)
+[Project Link](https://github.com/raphaelschnick/Spotify-Tools)
 
 ## Acknowledgements
 

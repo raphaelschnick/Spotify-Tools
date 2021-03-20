@@ -1,25 +1,40 @@
 <template>
   <div id="app">
-    <Header />
     <router-view />
   </div>
 </template>
 
 <script>
-import Header from '@/components/Header'
 
 export default {
-  name: 'App',
-  components: { Header }
+  name: 'App'
 }
 </script>
 
 <style lang="scss">
-  // Import custom SASS variable overrides, or alternatively
-  // define your variable overrides here instead
   @import 'assets/scss/custom-vars.scss';
-
-  // Import Bootstrap and BootstrapVue source SCSS files
   @import '~bootstrap/scss/bootstrap.scss';
   @import '~bootstrap-vue/src/index.scss';
+
+body {
+  background: linear-gradient(
+    -45deg,
+    #8a8bbc,
+    #799ac7,
+    #9a5f91
+  );
+  animation: gradient 30s ease infinite;
+  background-repeat: no-repeat;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 </style>

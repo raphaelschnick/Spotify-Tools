@@ -5,6 +5,8 @@
     img-alt="Image"
     img-top
     tag="article"
+    bg-variant="secondary"
+    text-variant="white"
     style="max-width: 20rem;"
     class="mb-2"
   >
@@ -39,7 +41,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>

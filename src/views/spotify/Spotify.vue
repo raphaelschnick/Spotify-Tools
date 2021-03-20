@@ -1,19 +1,21 @@
 <template>
   <div class="spotify">
-    <spotify-dashboard v-if="this.$store.getters.getToken" />
-    <SpotifyLogin v-if="!this.$store.getters.getToken" />
+    <spotify-dashboard />
   </div>
 </template>
 
 <script>
-import SpotifyLogin from '@/components/spotify/Login'
 import SpotifyDashboard from '@/components/spotify/dashboard/Dashboard'
 
 export default {
   name: 'Spotify',
   components: {
-    SpotifyDashboard,
-    SpotifyLogin
+    SpotifyDashboard
+  },
+  created () {
+    if (!this.$store.getters.getToken) {
+      this.$router.push({ name: 'SpotifyLogin' })
+    }
   }
 }
 </script>

@@ -18,12 +18,6 @@
         </b-card-group>
       </b-col>
     </b-row>
-    <button
-      class="btn btn-primary"
-      @click="logOut()"
-    >
-      Log out
-    </button>
     <SpotifyLogin v-if="!user" />
   </div>
 </template>

@@ -25,7 +25,10 @@
         </b-button>
       </b-col>
     </b-row>
-    <spotify-song-table :tracks="tracks" />
+    <spotify-song-table
+      v-if="tracks.length != 0"
+      :tracks="tracks"
+    />
   </div>
 </template>
 

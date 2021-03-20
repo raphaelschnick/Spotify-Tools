@@ -104,7 +104,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #counter {
   background-color: transparent;
   border-color: transparent;

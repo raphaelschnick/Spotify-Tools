@@ -68,7 +68,7 @@ export default {
   transition-duration: 0.35s;
 }
 .card:hover {
-  box-shadow: 0 0 15px #39EF0B;
+  box-shadow: 0 0 15px #1ED760;
   transition: ease-in-out 0.35s;
 }
 </style>

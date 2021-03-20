@@ -47,6 +47,12 @@
                 aria-hidden="true"
               /><span class="hidden-xs hidden-sm">Einstellungen</span></a>
             </li>
+            <li @click="logOut()">
+              <a><i
+                class="fas fa-sign-out-alt"
+                aria-hidden="true"
+              /><span class="hidden-xs hidden-sm">Log Out</span></a>
+            </li>
           </ul>
         </div>
       </div>
@@ -111,6 +117,13 @@ export default {
         }
       })
     })
+  },
+  methods: {
+    logOut () {
+      this.$store.commit('mutateToken', null)
+      this.$store.commit('mutateUser', null)
+      this.$router.push({ name: 'Home' })
+    }
   }
 }
 </script>
@@ -120,23 +133,19 @@ a:focus,a:hover,a{
     text-decoration: none;
 }
 li,ul{
+  cursor: pointer;
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
 #navigation {
-    background: #0A0B0A;
-    padding-bottom: 9rem;
-    padding-left: 0;
-}
-
-.search input {
-    border: none;
-    font-size: 15px;
-    padding: 15px 9px;
-    width: 100%;
-    color: #8492af;
+  min-height: 45.1rem;
+  min-width: 15rem;
+  background-color: #272727;
+  border-radius: 0px 20px 20px 0px;
+  padding-bottom: 9rem;
+  padding-left: 0;
 }
 
 .logo {
@@ -144,8 +153,6 @@ li,ul{
 }
 
 .navi a {
-    border-bottom: 1px solid #0A0B0A;
-    border-top: 1px solid #0A0B0A;
     color: #ffffff;
     display: block;
     font-size: 17px;
@@ -160,18 +167,18 @@ li,ul{
 
 .navi i {
     margin-right: 15px;
-    color: #39EF0B;
+    color: #1ED760;
 }
 
 .navi .active a {
-    background: #0A0B0A;
-    border-left: 5px solid #39EF0B;
+    background: #272727;
+    border-left: 5px solid #1ED760;
     padding-left: 15px;
 }
 
 .navi a:hover {
     background: #122143 none repeat scroll 0 0;
-    border-left: 5px solid #39EF0B;
+    border-left: 5px solid #1ED760;
     display: block;
     padding-left: 15px;
 }

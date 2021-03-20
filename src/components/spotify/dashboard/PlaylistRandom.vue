@@ -171,10 +171,10 @@ export default {
                   this.value = 40
                   let i
                   const uris = []
-                  for (i = 0; i < this.response.tracks.total; i++) {
+                  for (i = 0; i < response.data.tracks.total; i++) {
                     const random = this.generateUniqueRandom(99)
                     const track = responseTracks.data.items[random]
-                    uris.push(track.track.uri)
+                    if (track) uris.push(track.track.uri)
                   }
                   uris.forEach(item => {
                     client.post('playlists/' + responsePlaylist.data.id + '/tracks?uris=' + item).then(addedTracks => {
@@ -218,7 +218,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #counter {
   background-color: transparent;
   border-color: transparent;

@@ -1,10 +1,6 @@
 <template>
   <div>
-    <spotify-dashboard
-      v-if="user"
-      :user="user"
-    />
-    <SpotifyLogin />
+    <spotify-login />
   </div>
 </template>
 
@@ -27,9 +23,11 @@ export default {
           Authorization: 'Bearer ' + this.$route.query.access_token
         }
       }).then(response => {
+        console.log('lol')
         this.$store.commit('mutateUser', response.data)
         this.$store.commit('mutateToken', this.$route.query.access_token)
-        this.$router.push('dashboard')
+        console.log(this.$store.getters.getToken)
+        this.$router.push({ name: 'Spotify' })
       })
     }
   }

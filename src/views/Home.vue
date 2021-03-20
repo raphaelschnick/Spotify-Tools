@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <SpotifyLogin />
+    <spotify-login />
   </div>
 </template>
 
@@ -12,7 +12,7 @@ export default {
   components: { SpotifyLogin },
   created () {
     if (this.$store.getters.getToken) {
-      this.$router.push('spotify/dashboard')
+      this.$router.push({ name: 'Spotify' })
     }
   }
 }

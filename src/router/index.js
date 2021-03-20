@@ -8,12 +8,18 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      title: 'Spotify Tools'
+    }
   },
   {
     path: '/spotify/login',
     name: 'SpotifyLogin',
-    component: () => import('@/views/spotify/Login')
+    component: () => import('@/views/spotify/Login'),
+    meta: {
+      title: 'Login'
+    }
   },
   {
     path: '/spotify/dashboard',
@@ -26,17 +32,22 @@ const routes = [
   {
     path: '/spotify/playlist/:id',
     name: 'SpotifyPlaylistDetail',
-    component: () => import('@/views/spotify/PlaylistDetail.vue')
+    component: () => import('@/views/spotify/PlaylistDetail.vue'),
+    meta: {
+      title: 'Playlist'
+    }
   },
   {
     path: '*',
     name: 'Error',
-    component: () => import('@/views/spotify/Login')
+    component: () => import('@/views/spotify/Login'),
+    meta: {
+      title: 'Login'
+    }
   }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
   routes
 })
 

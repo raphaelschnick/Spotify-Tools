@@ -38,6 +38,14 @@ const routes = [
     }
   },
   {
+    path: '/impressum',
+    name: 'Impressum',
+    component: () => import('@/views/Impressum.vue'),
+    meta: {
+      title: 'Impressum'
+    }
+  },
+  {
     path: '*',
     name: 'Error',
     component: () => import('@/views/spotify/Login'),

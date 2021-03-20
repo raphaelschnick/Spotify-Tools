@@ -35,6 +35,15 @@
         </b-card>
       </b-col>
     </b-row>
+    <b-row class="mt-4">
+      <b-col class="text-center">
+        <router-link
+          :to="{name: 'Impressum'}"
+        >
+          Impressum
+        </router-link>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
@@ -45,7 +54,7 @@ export default {
 </script>
 
 <style scoped>
-a, a:hover {
+.card a, a:hover {
   color: black;
   text-decoration: none;
 }

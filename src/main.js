@@ -5,6 +5,8 @@ import router from '@/router/index'
 import store from './store/store'
 import App from './App.vue'
 import './plugins/bootstrap-vue'
+import jquery from 'jquery'
+window.$ = window.jQuery = jquery
 
 Vue.use(VueAxios, axios)
 

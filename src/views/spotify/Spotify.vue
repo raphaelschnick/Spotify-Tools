@@ -1,16 +1,16 @@
 <template>
   <div class="spotify">
-    <spotify-dashboard />
+    <Nav :active="1" />
   </div>
 </template>
 
 <script>
-import SpotifyDashboard from '@/components/spotify/dashboard/Dashboard'
+import Nav from '@/components/Nav'
 
 export default {
   name: 'Spotify',
   components: {
-    SpotifyDashboard
+    Nav
   },
   created () {
     if (!this.$store.getters.getToken) {

@@ -1,5 +1,5 @@
 <template>
-  <b-form>
+  <b-form class="text-white">
     <b-form-group
       label="Name:"
       valid-feedback="OK!"

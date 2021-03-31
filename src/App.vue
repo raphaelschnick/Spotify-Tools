@@ -19,23 +19,22 @@ export default {
 body {
   background: linear-gradient(
     -45deg,
-    #8a8bbc,
+    #847ce8,
     #799ac7,
-    #9a5f91
+    #be77b4
   );
-  animation: gradient 30s ease infinite;
-  background-size: 400%, 400%;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
 }
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.form-control, .form-control:focus, .custom-switch .custom-control-label::before, .custom-select {
+  color: white;
+  background: #272727 !important;
+}
+.form-control::placeholder, .form-control, .custom-select {
+  color: rgb(202, 196, 196);;
+}
+#counter {
+  color: rgb(202, 196, 196);
+  background-color: transparent;
+  border-color: transparent;
 }
 </style>

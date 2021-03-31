@@ -8,7 +8,7 @@
         class="img-fluid"
       >
     </b-col>
-    <b-col>
+    <b-col cols="10">
       <h2>
         {{ user.display_name }}
       </h2>

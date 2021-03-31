@@ -1,5 +1,8 @@
 <template>
-  <b-form @submit="onSubmit">
+  <b-form
+    class="text-white"
+    @submit="onSubmit"
+  >
     <b-form-group
       label="Name"
       valid-feedback="OK!"
@@ -103,10 +106,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-#counter {
-  background-color: transparent;
-  border-color: transparent;
-}
-</style>

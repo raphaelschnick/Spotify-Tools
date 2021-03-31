@@ -1,34 +1,31 @@
 <template>
-  <div>
-    <b-row v-if="user">
-      <b-col>
-        <spotify-user-card :user="user" />
-      </b-col>
-    </b-row>
-    <b-row v-if="playlists">
-      <b-col
-        v-for="playlist in playlists"
-        :key="playlist.id"
-        class="col-lg-3 col-sm-6"
-      >
-        <b-card-group class="mb-3">
-          <spotify-playlist-card
-            :playlist="playlist"
-          />
-        </b-card-group>
-      </b-col>
-    </b-row>
-    <SpotifyLogin v-if="!user" />
-  </div>
+  <b-row
+    v-if="playlists"
+    class="mr-1"
+  >
+    <b-col cols="12">
+      <spotify-user-card :user="user" />
+    </b-col>
+    <b-col
+      v-for="playlist in playlists"
+      :key="playlist.id"
+      class="col-lg-3 col-12"
+    >
+      <b-card-group class="mb-3">
+        <spotify-playlist-card
+          :playlist="playlist"
+        />
+      </b-card-group>
+    </b-col>
+  </b-row>
 </template>
 <script>
 import SpotifyUserCard from '@/components/spotify/user/Card'
 import SpotifyPlaylistCard from '@/components/spotify/playlist/Card'
-import SpotifyLogin from '@/components/spotify/Login'
 
 export default {
   name: 'User',
-  components: { SpotifyLogin, SpotifyUserCard, SpotifyPlaylistCard },
+  components: { SpotifyUserCard, SpotifyPlaylistCard },
   props: {
     user: {
       type: Object,

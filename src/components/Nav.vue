@@ -18,43 +18,49 @@
         <div class="navi">
           <ul>
             <li :class="{ 'active': active === 1 }">
-              <a>
+              <a @click="active = 1">
                 <i
                   class="fa fa-home"
                   aria-hidden="true"
                 />
-                <span>Home</span></a>
+                <span class="hidden-xs hidden-sm">Home</span>
+              </a>
             </li>
             <li :class="{ 'active': active === 2 }">
-              <a>
+              <a @click="active = 2">
                 <i
                   class="far fa-plus-square"
                   aria-hidden="true"
                 />
-                <span>Playlist erstellen</span></a>
+                <span class="hidden-xs hidden-sm">Playlist erstellen</span>
+              </a>
             </li>
             <li :class="{ 'active': active === 3 }">
-              <a>
+              <a @click="active = 3">
                 <i
                   class="fas fa-random"
                   aria-hidden="true"
                 />
-                <span>Random Playlist</span></a>
+                <span class="hidden-xs hidden-sm">Random Playlist</span>
+              </a>
             </li>
             <li :class="{ 'active': active === 4 }">
-              <a>
+              <a @click="active = 4">
                 <i
                   class="fab fa-youtube"
                   aria-hidden="true"
                 />
-                <span>YouTube Playlist Sync</span></a>
+                <span class="hidden-xs hidden-sm">YouTube Playlist Sync</span>
+              </a>
             </li>
             <li :class="{ 'active': active === 5 }">
-              <a><i
-                   class="fas fa-cogs"
-                   aria-hidden="true"
-                 />
-                <span>Einstellungen</span></a>
+              <a @click="active = 5">
+                <i
+                  class="fas fa-cogs"
+                  aria-hidden="true"
+                />
+                <span class="hidden-xs hidden-sm">Einstellungen</span>
+              </a>
             </li>
             <li @click="logOut()">
               <a>
@@ -62,7 +68,8 @@
                   class="fas fa-sign-out-alt"
                   aria-hidden="true"
                 />
-                <span>Log Out</span></a>
+                <span class="hidden-xs hidden-sm">Log Out</span>
+              </a>
             </li>
           </ul>
         </div>
@@ -110,10 +117,29 @@
             </ul>
           </div>
         </nav>
-        <user
-          :user="user"
-          :playlists="playlists"
-        />
+        <div class="ml-2">
+          <user
+            v-if="active === 1"
+            :user="user"
+            :playlists="playlists"
+          />
+          <playlist-create
+            v-if="active === 2"
+            :user="user"
+          />
+          <playlist-random
+            v-if="active === 3"
+            :user="user"
+          />
+          <playlist-sync
+            v-if="active === 4"
+            :user="user"
+          />
+          <spotify-settings
+            v-if="active === 5"
+            :user="user"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -122,19 +148,17 @@
 <script>
 import Vue from 'vue'
 import User from '@/components/spotify/user/User'
+import PlaylistCreate from '@/components/spotify/dashboard/PlaylistCreate.vue'
+import PlaylistSync from '@/components/spotify/dashboard/PlaylistSync.vue'
+import PlaylistRandom from '@/components/spotify/dashboard/PlaylistRandom.vue'
+import SpotifySettings from '@/components/spotify/dashboard/Settings'
+
 export default {
   name: 'Nav',
-  components: {
-    User
-  },
-  props: {
-    active: {
-      type: Number,
-      required: true
-    }
-  },
+  components: { User, PlaylistCreate, PlaylistSync, PlaylistRandom, SpotifySettings },
   data () {
     return {
+      active: 1,
       playlists: []
     }
   },
@@ -160,6 +184,11 @@ export default {
     toggleSidebar () {
       this.$refs.sidebar.classList.toggle('active')
       this.$refs.sidebaricon.classList.toggle('active')
+    },
+    logOut () {
+      this.$store.commit('mutateToken', null)
+      this.$store.commit('mutateUser', null)
+      this.$router.push({ name: 'Home' })
     }
   }
 }
@@ -171,11 +200,6 @@ p {
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
-}
-
-a, a:hover, a:focus {
-    text-decoration: none;
-    transition: all 0.3s;
 }
 
 .navbar {
@@ -334,6 +358,26 @@ a[data-toggle="collapse"] {
   text-align: center;
   font-size: 4rem;
 }
+a:focus,a:hover,a{
+    outline:none;
+    text-decoration: none;
+}
+li,ul{
+  cursor: pointer;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#navigation {
+  min-height: 45.1rem;
+  min-width: 15rem;
+  background-color: #272727;
+  border-radius: 0px 20px 20px 0px;
+  padding-bottom: 9rem;
+  padding-left: 0;
+}
+
 .navi a {
     color: #ffffff;
     display: block;
@@ -353,13 +397,13 @@ a[data-toggle="collapse"] {
 }
 
 .navi .active a {
-    background: #545554;
+    background: #272727;
     border-left: 5px solid #1ED760;
     padding-left: 15px;
 }
 
 .navi a:hover {
-    background-color: #545554;
+    background: #404041 none repeat scroll 0 0;
     border-left: 5px solid #1ED760;
     display: block;
     padding-left: 15px;

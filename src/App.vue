@@ -24,6 +24,7 @@ body {
     #9a5f91
   );
   animation: gradient 30s ease infinite;
+  background-size: 400%, 400%;
   background-repeat: no-repeat;
 }
 @keyframes gradient {

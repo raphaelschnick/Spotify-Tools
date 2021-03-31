@@ -23,10 +23,8 @@ export default {
           Authorization: 'Bearer ' + this.$route.query.access_token
         }
       }).then(response => {
-        console.log('lol')
         this.$store.commit('mutateUser', response.data)
         this.$store.commit('mutateToken', this.$route.query.access_token)
-        console.log(this.$store.getters.getToken)
         this.$router.push({ name: 'Spotify' })
       })
     }

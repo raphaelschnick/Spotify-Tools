@@ -1,6 +1,6 @@
 <template>
   <div class="spotify">
-    <Nav :active="1" />
+    <Nav />
   </div>
 </template>
 

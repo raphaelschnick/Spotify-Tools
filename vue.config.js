@@ -6,5 +6,8 @@ module.exports = {
       .options({
         fix: true
       })
+  },
+  devServer: {
+    port: 8080
   }
 }

@@ -22,11 +22,11 @@ const routes = [
     }
   },
   {
-    path: '/spotify/dashboard',
+    path: '/dashboard',
     name: 'Spotify',
     component: () => import('@/views/spotify/Spotify.vue'),
     meta: {
-      title: 'Konto'
+      title: 'Dashboard'
     }
   },
   {

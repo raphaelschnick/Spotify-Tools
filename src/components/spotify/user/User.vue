@@ -26,32 +26,24 @@
         Alben
       </b-nav-item>
     </b-nav>
-    <b-row v-if="active == 1">
-      <b-col
-        v-for="playlist in playlists"
-        :key="playlist.id"
-        class="col-lg-2 col-6"
-      >
-        <b-card-group class="mb-2">
-          <spotify-playlist-card
-            :playlist="playlist"
-          />
-        </b-card-group>
-      </b-col>
-    </b-row>
-    <b-row v-if="active == 2">
-      <b-col
-        v-for="artist in artists"
-        :key="artist.name"
-        class="col-lg-2 col-6"
-      >
-        <b-card-group class="mb-2">
-          <spotify-artist-card
-            :artist="artist"
-          />
-        </b-card-group>
-      </b-col>
-    </b-row>
+    <div v-if="active == 1">
+      <vs-card-group>
+        <spotify-playlist-card
+          v-for="playlist in playlists"
+          :key="playlist.id"
+          :playlist="playlist"
+        />
+      </vs-card-group>
+    </div>
+    <div v-if="active == 2">
+      <vs-card-group>
+        <spotify-artist-card
+          v-for="artist in artists"
+          :key="artist.id"
+          :artist="artist"
+        />
+      </vs-card-group>
+    </div>
     <b-row v-if="active == 3">
       <b-col
         v-for="album in albums"

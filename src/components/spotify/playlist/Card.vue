@@ -1,25 +1,29 @@
 <template>
-  <b-card
-    :title="playlist.name"
-    :img-src="image"
-    img-alt="Image"
-    img-top
-    tag="article"
-    bg-variant="secondary"
-    text-variant="white"
-    style="max-width: 12rem; min-height: 22rem;"
-    class="mb-2"
-  >
-    <b-card-text>
-      Tracks: {{ playlist.tracks.total }}
-    </b-card-text>
-    <b-button
-      :to="{ name: 'SpotifyPlaylistDetail', params: { id: playlist.id } }"
-      variant="primary"
-    >
-      Zur Playlist
-    </b-button>
-  </b-card>
+  <vs-card>
+    <template #title>
+      <h2>{{ playlist.name }}</h2>
+    </template>
+    <template #img>
+      <img :src="image">
+    </template>
+    <template #text>
+      <p>Tracks: {{ playlist.tracks.total }}</p>
+      <vs-button
+        :to="{ name: 'SpotifyPlaylistDetail', params: { id: playlist.id } }"
+        primary
+      >
+        Zur Playlist
+      </vs-button>
+    </template>
+    <template #interactions>
+      <vs-button
+        dark
+        icon
+      >
+        <i class="far fa-star" />
+      </vs-button>
+    </template>
+  </vs-card>
 </template>
 
 <script>
@@ -38,3 +42,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.vs-card {
+  background: black !important;
+}
+</style>

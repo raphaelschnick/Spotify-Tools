@@ -1,19 +1,20 @@
 <template>
-  <b-card
-    bg-variant="secondary"
-    text-variant="white"
-    style="max-width: 20rem; min-height: 16rem;"
-    class="mb-2"
-  >
-    <b-avatar
-      size="8rem"
-      :src="image"
-    />
-    <br><br>
-    <b-card-title class="text-center">
-      <h5> {{ artist.name }} </h5>
-    </b-card-title>
-  </b-card>
+  <vs-card success>
+    <template #title>
+      <h2>{{ artist.name }}</h2>
+    </template>
+    <template #img>
+      <img :src="image">
+    </template>
+    <template #interactions>
+      <vs-button
+        dark
+        icon
+      >
+        <i class="far fa-star" />
+      </vs-button>
+    </template>
+  </vs-card>
 </template>
 
 <script>

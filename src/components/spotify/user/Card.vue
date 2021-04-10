@@ -1,30 +1,35 @@
 <template>
-  <b-row class="mb-4">
-    <b-col>
+  <vs-card
+    type="3"
+    class="mb-4"
+  >
+    <template #title>
+      <h2>{{ user.display_name }}</h2>
+    </template>
+    <template #img>
       <img
-        :src="image"
-
-        width="300"
-        class="img-fluid"
+        v-if="image"
+        :src="user.images[0].url"
       >
-    </b-col>
-    <b-col cols="10">
-      <h2>
-        {{ user.display_name }}
-      </h2>
+      <img
+        v-if="!image"
+        src="@/assets/avatar.png"
+      >
+    </template>
+    <template #text>
       <p> {{ user.email }} </p>
       <p>Follower: {{ user.followers.total }}</p>
       <p>Following: {{ following.length }}</p>
-
-      <b-button
+      <br>
+      <vs-button
         :href="user.external_urls.spotify"
         target="_blank"
-        variant="primary"
+        primary
       >
         Zum Konto
-      </b-button>
-    </b-col>
-  </b-row>
+      </vs-button>
+    </template>
+  </vs-card>
 </template>
 
 <script>
@@ -45,7 +50,7 @@ export default {
   },
   computed: {
     image () {
-      return this.user.images[0] ? this.user.images[0].url : 'https://image.flaticon.com/icons/png/512/17/17004.png'
+      return this.user.images[0]
     }
   },
   created () {

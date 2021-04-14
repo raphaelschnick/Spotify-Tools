@@ -1,5 +1,7 @@
 # Spotify-Tools
 
+![](https://img.shields.io/tokei/lines/github/raphaelschnick/Spotify-Tools?style=flat-square)
+
 <p align="center">
 
   <h3 align="center">Spotify Tools</h3>
